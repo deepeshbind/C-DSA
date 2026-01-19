@@ -47,10 +47,10 @@ void preOrder(Node *root)
     preOrder(root->right);
 }
 
-// inorder traversal
+// inorder traversal // left->root->right
 
 void inOrder(Node *root)
-{ // left->root->right
+{ 
     if (root == NULL)
     {
         return;

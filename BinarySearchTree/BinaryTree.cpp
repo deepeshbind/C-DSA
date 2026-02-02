@@ -183,12 +183,46 @@ void topview(Node* root) {
     cout << endl;
 }
 
+//kth level of tree
+
+void kthLevel(Node* root, int k) { //tc=O(n)
+    if(root == NULL){
+        return;
+    }
+    if(k == 1) {
+        cout << root->data << " ";
+        return;
+    }
+
+    kthLevel(root->left, k-1);
+    kthLevel(root->right, k-1);
+}
+
+//Transform to sum tree
+// node = mode val + left subtree + right subtree
+
+
+int sumTree(Node* root) {
+    if(root == NULL) {
+        return 0;
+    }
+
+    int leftSum = sumTree(root->left);
+    int rightSum = sumTree(root->right);
+
+    root->data += leftSum + rightSum;
+    return root->data;
+}
+
+
+
+
 int main()
 {
-    vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
+    vector<int> preorder = {1, 2, 7, -1, -1, 3, 4, -1, -1, 5, -1, -1};
 
     Node *root = buildTree(preorder);
 
-    topview(root);
+    sumTree(root);
     return 0;
 }
